@@ -1,0 +1,4 @@
+class BarTab
+
+
+end
