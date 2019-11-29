@@ -7,6 +7,7 @@ class Room
     @capacity = capacity
     @songs = songs
     @customers = customers
+    @total_spend = 0
   end
 
   def add_customer(customer)
