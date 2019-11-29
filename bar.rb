@@ -1,4 +1,4 @@
-class BarTab
+class Bar
 
 
 end
