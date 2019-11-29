@@ -26,4 +26,15 @@ class Room
     @songs.delete(song)
   end
 
+  def customer_fav_song
+    for customer in @customers
+      for song in @songs
+        if song == customer.fav_song
+          return "Whoo!"
+        end
+      end
+    end
+    return nil
+  end
+
 end

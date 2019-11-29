@@ -18,6 +18,7 @@ def setup
   @customer2 = Customer.new("Barbara", 32, 150, @song2)
   @customer3 = Customer.new("John Denver", 60, 1500, @song3)
   @room1 = Room.new("Room1", 5,[@song1, @song2, @song3],[@customer1, @customer2])
+  @room2 = Room.new("Room2", 5,[@song3],[@customer1, @customer2])
 end
 
 def test_room_has_name
@@ -63,6 +64,14 @@ end
 def test_can_remove_song
   @room1.remove_song(@song1)
   assert_equal([@song2,@song3], @room1.songs)
+end
+
+def test_for_customers_favourite_song
+  assert_equal("Whoo!", @room1.customer_fav_song)
+end
+
+def test_for_not_having_customers_fav_song
+  assert_nil(@room2.customer_fav_song)
 end
 
 end
