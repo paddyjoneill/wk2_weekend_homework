@@ -90,6 +90,7 @@ class TestKaraoke < MiniTest::Test
     assert_equal(3, @room1.customers.count)
     assert_equal(1005, @supercube.till)
     assert_equal(1495, @customer3.money)
+    assert_equal(5, @room1.total_spend)
   end
 
   def test_try_to_add_customer_to_room_but_not_enough_money
@@ -97,6 +98,7 @@ class TestKaraoke < MiniTest::Test
     assert_equal(2, @room1.customers.count)
     assert_equal(1000, @supercube.till)
     assert_equal(4, @customer4.money)
+    assert_equal(0, @room1.total_spend)
   end
 
 end

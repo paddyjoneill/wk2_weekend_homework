@@ -74,4 +74,13 @@ def test_for_not_having_customers_fav_song
   assert_nil(@room2.customer_fav_song)
 end
 
+def test_return_total_spend
+  assert_equal(0, @room1.total_spend)
+end
+
+def test_increase_total_spend
+  @room1.increase_total_spend(100)
+  assert_equal(100, @room1.total_spend)
+end
+
 end

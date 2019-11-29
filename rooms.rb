@@ -38,4 +38,12 @@ class Room
     return nil
   end
 
+  def total_spend
+    return @total_spend
+  end
+
+  def increase_total_spend(amount)
+    @total_spend += amount
+  end
+
 end
