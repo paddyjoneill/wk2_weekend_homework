@@ -14,5 +14,13 @@ class Customer
     @money -= amount
   end
 
+  def has_enough_money(amount)
+    if @money >= amount
+      true
+    else
+      false
+    end
+  end
+
 
 end

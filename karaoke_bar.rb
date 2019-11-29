@@ -14,7 +14,11 @@ class KaraokeBar
   end
 
   def add_customer(room, customer)
-    room.add_customer(customer)
+    if customer.money >= @entrance_fee
+      customer.remove_money(@entrance_fee)
+      @till += @entrance_fee
+      room.add_customer(customer)
+    end
   end
 
   def remove_customer(room, customer)
@@ -23,6 +27,17 @@ class KaraokeBar
 
   def add_song(room, song)
     room.add_song(song)
+  end
+
+  def increase_till(amount)
+    @till += amount
+  end
+
+  def pay_entrance_fee(customer)
+    if customer.money >= @entrance_fee
+      customer.remove_money(@entrance_fee)
+      @till += @entrance_fee
+    end
   end
 
 end

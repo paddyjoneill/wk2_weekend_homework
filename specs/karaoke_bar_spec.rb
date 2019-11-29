@@ -17,6 +17,7 @@ class TestKaraoke < MiniTest::Test
     @customer1 = Customer.new("Tony", 30, 100, @song1)
     @customer2 = Customer.new("Barbara", 32, 150, @song2)
     @customer3 = Customer.new("John Denver", 60, 1500, @song3)
+    @customer4 = Customer.new("Reginald Dwight", 23, 4, @song3)
     @room1 = Room.new("Room1", 8, [@song1, @song2, @song3],[@customer1, @customer2])
     @room2 = Room.new("Room2", 6, [@song1, @song2], [@customer1])
     @room3 = Room.new("Room3", 4, [@song3, @song2], [@customer3])
@@ -57,6 +58,45 @@ class TestKaraoke < MiniTest::Test
   def test_add_song_to_room
     @supercube.add_song(@room2, @song3)
     assert_equal(3, @room2.songs.count)
+  end
+
+  def test_customer_has_enough_money_for_purchase
+    assert_equal(true, @customer1.has_enough_money(@supercube.entrance_fee))
+  end
+
+  def test_customer_doesnt_have_enough_money_for_purchase
+    assert_equal(false, @customer4.has_enough_money(@supercube.entrance_fee))
+  end
+
+  def test_increase_till_by_entrance_fee
+    @supercube.increase_till(@supercube.entrance_fee)
+    assert_equal(1005, @supercube.till)
+  end
+
+  def test_customer_pays_entrance_fee
+    @supercube.pay_entrance_fee(@customer1)
+    assert_equal(1005, @supercube.till)
+    assert_equal(95, @customer1.money)
+  end
+
+  def test_customer_not_enough_money_for_entrance
+    @supercube.pay_entrance_fee(@customer4)
+    assert_equal(1000, @supercube.till)
+    assert_equal(4, @customer4.money)
+  end
+
+  def test_add_customer_to_room_and_pays
+    @supercube.add_customer(@room1, @customer3)
+    assert_equal(3, @room1.customers.count)
+    assert_equal(1005, @supercube.till)
+    assert_equal(1495, @customer3.money)
+  end
+
+  def test_try_to_add_customer_to_room_but_not_enough_money
+    @supercube.add_customer(@room1, @customer4)
+    assert_equal(2, @room1.customers.count)
+    assert_equal(1000, @supercube.till)
+    assert_equal(4, @customer4.money)
   end
 
 end
