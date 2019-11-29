@@ -34,4 +34,9 @@ class TestCustomer < MiniTest::Test
     assert_equal(80, @customer.money)
   end
 
+  def test_cant_take_money_if_not_enough
+    @customer.remove_money(120)
+    assert_equal(100, @customer.money)
+  end
+
 end

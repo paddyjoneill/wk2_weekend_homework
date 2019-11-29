@@ -19,11 +19,23 @@ class TestKaraoke < MiniTest::Test
     @customer3 = Customer.new("John Denver", 60, 1500, @song3)
     @room1 = Room.new("Room1", 8, [@song1, @song2, @song3],[@customer1, @customer2])
     @room2 = Room.new("Room2", 6, [@song1, @song2], [@customer1])
+    @room3 = Room.new("Room3", 4, [@song3, @song2], [@customer3])
     @supercube = KaraokeBar.new("Super Cube", [@room1, @room2], 1000)
   end
 
   def test_supercube_has_name
     assert_equal("Super Cube", @supercube.name)
   end
+
+  def test_how_many_rooms
+    assert_equal(2, @supercube.rooms.count)
+  end
+
+  def test_can_add_room
+    @supercube.add_room(@room3)
+    assert_equal(3, @supercube.rooms.count)
+  end
+
+  
 
 end

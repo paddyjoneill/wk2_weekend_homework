@@ -8,4 +8,8 @@ class KaraokeBar
     @till = initial_balance
   end
 
+  def add_room(room)
+    @rooms << room
+  end
+
 end

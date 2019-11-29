@@ -9,8 +9,9 @@ class Customer
     @fav_song = fav_song
   end
 
-  def remove_money
-
+  def remove_money(amount)
+    return if amount > @money
+    @money -= amount
   end
 
 
