@@ -4,6 +4,8 @@ require_relative('../karaoke_bar')
 require_relative('../rooms')
 require_relative('../customers')
 require_relative('../songs')
+require_relative('../drink')
+require_relative('../bar')
 
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
