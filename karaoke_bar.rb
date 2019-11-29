@@ -12,4 +12,8 @@ class KaraokeBar
     @rooms << room
   end
 
+  def add_customer(room, customer)
+    room.add_customer(customer)
+  end
+
 end

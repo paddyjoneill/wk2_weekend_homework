@@ -36,6 +36,17 @@ class TestKaraoke < MiniTest::Test
     assert_equal(3, @supercube.rooms.count)
   end
 
-  
+  def test_can_add_customer_to_room
+    @supercube.add_customer(@room1, @customer3)
+    assert_equal(3, @room1.customers.count)
+  end
+
+  def test_cant_add_too_many_people
+    @supercube.add_customer(@room3, @customer3)
+    @supercube.add_customer(@room3, @customer3)
+    @supercube.add_customer(@room3, @customer3)
+    @supercube.add_customer(@room3, @customer3)
+    assert_equal(4, @room3.customers.count)
+  end
 
 end
