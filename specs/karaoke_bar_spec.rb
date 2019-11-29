@@ -20,7 +20,7 @@ class TestKaraoke < MiniTest::Test
     @room1 = Room.new("Room1", 8, [@song1, @song2, @song3],[@customer1, @customer2])
     @room2 = Room.new("Room2", 6, [@song1, @song2], [@customer1])
     @room3 = Room.new("Room3", 4, [@song3, @song2], [@customer3])
-    @supercube = KaraokeBar.new("Super Cube", [@room1, @room2], 1000)
+    @supercube = KaraokeBar.new("Super Cube", [@room1, @room2], 1000, 5)
   end
 
   def test_supercube_has_name
@@ -47,6 +47,16 @@ class TestKaraoke < MiniTest::Test
     @supercube.add_customer(@room3, @customer3)
     @supercube.add_customer(@room3, @customer3)
     assert_equal(4, @room3.customers.count)
+  end
+
+  def test_can_remove_customers_from_room
+    @supercube.remove_customer(@room1, @customer1)
+    assert_equal(1, @room1.customers.count)
+  end
+
+  def test_add_song_to_room
+    @supercube.add_song(@room2, @song3)
+    assert_equal(3, @room2.songs.count)
   end
 
 end
