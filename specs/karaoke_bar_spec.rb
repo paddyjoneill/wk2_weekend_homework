@@ -23,7 +23,12 @@ class TestKaraoke < MiniTest::Test
     @room1 = Room.new("Room1", 8, [@song1, @song2, @song3],[@customer1, @customer2])
     @room2 = Room.new("Room2", 6, [@song1, @song2], [@customer1])
     @room3 = Room.new("Room3", 4, [@song3, @song2], [@customer3])
-    @supercube = KaraokeBar.new("Super Cube", [@room1, @room2], 1000, 5)
+    @beer = Drink.new("Beer", 4)
+    @redwine = Drink.new("Red Wine", 6)
+    @whitewine = Drink.new("White Wine", 6)
+    @mainbar = Bar.new("Main Bar")
+    @sidebar = Bar.new("Side Bar")
+    @supercube = KaraokeBar.new("Super Cube", [@room1, @room2], [@mainbar], 1000, 5)
   end
 
   def test_supercube_has_name
@@ -101,6 +106,16 @@ class TestKaraoke < MiniTest::Test
     assert_equal(1000, @supercube.till)
     assert_equal(4, @customer4.money)
     assert_equal(0, @room1.total_spend)
+  end
+
+  def test_can_add_new_bar
+    @supercube.add_bar(@sidebar)
+    assert_equal(2, @supercube.bars.count)
+  end
+
+  def test_can_add_stock_to_bar
+    @supercube.add_drinks(@mainbar, @beer, 20)
+    assert_equal(20, @supercube.stock_check(@mainbar, @beer))
   end
 
 end

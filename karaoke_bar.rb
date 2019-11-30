@@ -1,10 +1,11 @@
 class KaraokeBar
 
-  attr_reader :name, :rooms, :till, :entrance_fee
+  attr_reader :name, :rooms, :bars, :till, :entrance_fee
 
-  def initialize(name, rooms, initial_balance, entrance_fee)
+  def initialize(name, rooms, bars, initial_balance, entrance_fee)
     @name = name
     @rooms = rooms
+    @bars = bars
     @till = initial_balance
     @entrance_fee = entrance_fee
   end
@@ -39,6 +40,18 @@ class KaraokeBar
       customer.remove_money(@entrance_fee)
       @till += @entrance_fee
     end
+  end
+
+  def add_bar(bar)
+    @bars << bar
+  end
+
+  def add_drinks(bar, drink, amount)
+    bar.add_drink(drink, amount)
+  end
+
+  def stock_check(bar, drink)
+    bar.stock[drink]
   end
 
 end

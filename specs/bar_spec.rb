@@ -2,7 +2,7 @@ require('minitest/autorun')
 require('minitest/reporters')
 require_relative('../drink')
 require_relative('../bar')
-
+require('pry')
 
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
@@ -21,13 +21,13 @@ class TestBar < MiniTest::Test
   end
 
   def test_add_drink_to_bar
-    @mainbar.add_drink(@beer)
+    @mainbar.add_drink(@beer, 1)
     assert_equal(1, @mainbar.stock[@beer])
   end
 
   def test_remove_drink_from_bar
-    @mainbar.add_drink(@beer)
-    @mainbar.add_drink(@beer)
+    @mainbar.add_drink(@beer, 1)
+    @mainbar.add_drink(@beer, 1)
     assert_equal(2, @mainbar.stock[@beer])
     @mainbar.remove_drink(@beer)
     assert_equal(1, @mainbar.stock[@beer])
