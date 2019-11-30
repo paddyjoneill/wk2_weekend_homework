@@ -33,4 +33,18 @@ class TestBar < MiniTest::Test
     assert_equal(1, @mainbar.stock[@beer])
   end
 
+  def test_total_stock
+    @mainbar.add_drink(@beer, 20)
+    @mainbar.add_drink(@redwine, 20)
+    @mainbar.add_drink(@whitewine, 20)
+    assert_equal(60, @mainbar.total_stock)
+  end
+
+  def test_total_stock_value
+    @mainbar.add_drink(@beer, 20)
+    @mainbar.add_drink(@redwine, 20)
+    @mainbar.add_drink(@whitewine, 20)
+    assert_equal(320, @mainbar.total_stock_value)
+  end
+
 end
