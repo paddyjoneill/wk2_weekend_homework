@@ -20,6 +20,7 @@ class KaraokeBar
       @till += @entrance_fee
       room.add_customer(customer)
       room.increase_total_spend(@entrance_fee)
+      room.increase_customer_tab(customer, @entrance_fee)
     end
   end
 
@@ -64,6 +65,8 @@ class KaraokeBar
     customer.remove_money(drink.price)
     bar.remove_drink(drink)
     @till += drink.price
+    room.increase_total_spend(drink.price)
+    room.increase_customer_tab(customer, drink.price)
   end
 
 end

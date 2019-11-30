@@ -1,6 +1,6 @@
 class Room
 
-  attr_reader :name, :capacity, :songs, :customers
+  attr_reader :name, :capacity, :songs, :customers, :customer_tab
 
   def initialize(name, capacity, songs)
     @name = name
@@ -8,6 +8,7 @@ class Room
     @songs = songs
     @customers = []
     @total_spend = 0
+    @customer_tab = Hash.new(0)
   end
 
   def set_entrance_fee(amount)
@@ -17,6 +18,7 @@ class Room
   def add_customer(customer)
     return if @customers.count >= @capacity
     @customers << customer
+    @customer_tab[customer] = 0
   end
 
   def remove_customer(customer)
@@ -48,6 +50,14 @@ class Room
 
   def increase_total_spend(amount)
     @total_spend += amount
+  end
+
+  def check_customer_tab(customer)
+    @customer_tab[customer]
+  end
+
+  def increase_customer_tab(customer, amount)
+    @customer_tab[customer] += amount
   end
 
 end

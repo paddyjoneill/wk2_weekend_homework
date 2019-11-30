@@ -89,4 +89,12 @@ def test_increase_total_spend
   assert_equal(100, @room1.total_spend)
 end
 
+def test_check_customer_tab
+  assert_equal(0, @room1.check_customer_tab(@customer1))
+end
+
+def test_increase_customer_tab
+  assert_equal(10, @room1.increase_customer_tab(@customer1, 10))
+end
+
 end
