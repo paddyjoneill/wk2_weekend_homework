@@ -60,6 +60,7 @@ class KaraokeBar
 
   def sell_drink_to_customer(room, customer, bar, drink)
     return if !customer.has_enough_money(drink.price)
+    return if bar.stock[drink] < 1
     customer.remove_money(drink.price)
     bar.remove_drink(drink)
     @till += drink.price
