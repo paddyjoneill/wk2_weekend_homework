@@ -2,12 +2,16 @@ class Room
 
   attr_reader :name, :capacity, :songs, :customers
 
-  def initialize(name, capacity, songs, customers = [] )
+  def initialize(name, capacity, songs)
     @name = name
     @capacity = capacity
     @songs = songs
-    @customers = customers
+    @customers = []
     @total_spend = 0
+  end
+
+  def set_entrance_fee(amount)
+    @entrance_fee = amount
   end
 
   def add_customer(customer)

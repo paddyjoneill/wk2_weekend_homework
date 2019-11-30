@@ -54,4 +54,15 @@ class KaraokeBar
     bar.stock[drink]
   end
 
+  def remove_drink(bar, drink)
+    bar.remove_drink(drink)
+  end
+
+  def sell_drink_to_customer(room, customer, bar, drink)
+    return if !customer.has_enough_money(drink.price)
+    customer.remove_money(drink.price)
+    bar.remove_drink(drink)
+    @till += drink.price
+  end
+
 end

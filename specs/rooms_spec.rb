@@ -3,6 +3,7 @@ require('minitest/reporters')
 require_relative('../rooms')
 require_relative('../customers')
 require_relative('../songs')
+require_relative('../karaoke_bar')
 
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
@@ -17,8 +18,10 @@ def setup
   @customer1 = Customer.new("Tony", 30, 100, @song1)
   @customer2 = Customer.new("Barbara", 32, 150, @song2)
   @customer3 = Customer.new("John Denver", 60, 1500, @song3)
-  @room1 = Room.new("Room1", 5,[@song1, @song2, @song3],[@customer1, @customer2])
-  @room2 = Room.new("Room2", 5,[@song3],[@customer1, @customer2])
+  @room1 = Room.new("Room1", 5,[@song1, @song2, @song3])
+  @room2 = Room.new("Room2", 5,[@song3])
+  @room1.add_customer(@customer1)
+  @room1.add_customer(@customer2)
 end
 
 def test_room_has_name
@@ -34,6 +37,7 @@ def test_room_has_songs
 end
 
 def test_room_has_customers
+
   assert_equal([@customer1, @customer2], @room1.customers)
 end
 
@@ -43,6 +47,8 @@ def test_add_customer_to_room
 end
 
 def test_remove_customer_from_room
+  # @room1.add_customer(@customer1)
+  # @room1.add_customer(@customer2)
   @room1.add_customer(@customer3)
   @room1.remove_customer(@customer1)
   assert_equal([@customer2, @customer3], @room1.customers)
@@ -75,7 +81,7 @@ def test_for_not_having_customers_fav_song
 end
 
 def test_return_total_spend
-  assert_equal(0, @room1.total_spend)
+  assert_equal(00, @room1.total_spend)
 end
 
 def test_increase_total_spend
