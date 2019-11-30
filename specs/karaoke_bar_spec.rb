@@ -166,4 +166,18 @@ class TestKaraoke < MiniTest::Test
     assert_equal(10, @room4.check_customer_tab(@customer1))
   end
 
+  def test_total_stock_items
+    @supercube.add_bar(@sidebar)
+    @supercube.add_drinks(@mainbar, @beer, 20)
+    @supercube.add_drinks(@sidebar, @redwine, 20)
+    assert_equal(40, @supercube.total_stock)
+  end
+
+  def test_total_stock_value
+    @supercube.add_bar(@sidebar)
+    @supercube.add_drinks(@mainbar, @beer, 20)
+    @supercube.add_drinks(@sidebar, @beer, 20)
+    assert_equal(200, @supercube.total_stock_value)
+  end
+
 end

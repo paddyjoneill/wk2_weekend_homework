@@ -1,3 +1,5 @@
+require 'pry'
+
 class KaraokeBar
 
   attr_reader :name, :rooms, :bars, :till, :entrance_fee
@@ -67,6 +69,27 @@ class KaraokeBar
     @till += drink.price
     room.increase_total_spend(drink.price)
     room.increase_customer_tab(customer, drink.price)
+  end
+
+  def total_stock
+    total_stock = 0
+    for bar in @bars
+      # binding.pry
+      for drink in bar.stock.keys
+        total_stock += bar.stock[drink]
+      end
+    end
+    return total_stock
+  end
+
+  def total_stock_value
+    total_stock_value = 0
+    for bar in @bars
+      for drink in bar.stock.keys
+        total_stock_value += (bar.stock[drink] * drink.price)
+      end
+    end
+    return total_stock_value
   end
 
 end
