@@ -163,6 +163,7 @@ class TestKaraoke < MiniTest::Test
     @supercube.add_drinks(@mainbar, @beer, 20)
     @supercube.sell_drink_to_customer(@room4, @customer1, @mainbar, @beer)
     assert_equal(10, @room4.total_spend)
+    assert_equal(10, @room4.check_customer_tab(@customer1))
   end
 
 end
